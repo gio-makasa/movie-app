@@ -26,15 +26,20 @@ export default {
           this.data = data;
         });
     } else {
-      fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=04c35731a5ee918f014970082a0088b1&language=en-US`
-      )
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          this.data = data;
-        });
+      movieId = parseInt(movieId);
+      if (Number.isInteger(movieId)) {
+        fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=04c35731a5ee918f014970082a0088b1&language=en-US`
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            this.data = data;
+          });
+      } else {
+        this.$router.push("/home")
+      }
     }
   },
 };

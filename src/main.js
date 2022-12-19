@@ -5,6 +5,7 @@ import App from './App.vue'
 
 import TheHome from "./pages/TheHome.vue";
 import TheAbout from "./pages/TheAbout.vue";
+import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -16,7 +17,7 @@ const router = createRouter({
                 { path: ':movieId', component: TheAbout },
             ]
         },
-        { path: '/:notFound(.*)', redirect: '/Home' },
+        { path: '/:notFound(.*)', component: NotFound },
     ]
 })
 
