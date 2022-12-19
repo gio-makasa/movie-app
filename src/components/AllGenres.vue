@@ -1,6 +1,8 @@
 <template>
+  <i class="fa-solid fa-bars" @click="showGenres"></i>
   <div id="genretabs">
     <genre-tab
+      class="genretab"
       v-for="i in genres"
       :key="i.id"
       :genre="i"
@@ -17,6 +19,11 @@ export default {
     return {
       genres: [],
     };
+  },
+  methods: {
+    showGenres() {
+      document.getElementById("genretabs").classList.toggle("active");
+    },
   },
   beforeMount() {
     fetch(
@@ -40,5 +47,26 @@ export default {
   width: 15%;
   height: 100vh;
   color: white;
+}
+.fa-bars {
+  display: none;
+}
+
+@media screen and (max-width: 950px) {
+  #genretabs {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: fit-content;
+    z-index: 2;
+  }
+  #genretabs[class~=active]{
+    display: block;
+  }
+  .fa-bars {
+    display: block;
+    font-size: xx-large;
+    padding: 1rem;
+    color: white;
+  }
 }
 </style>

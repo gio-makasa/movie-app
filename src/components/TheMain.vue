@@ -72,4 +72,10 @@ main {
   float: right;
   width: 85%;
 }
+
+@media screen and (max-width: 950px) {
+  main{
+    width: 100%;
+  }
+}
 </style>
