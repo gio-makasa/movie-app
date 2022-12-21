@@ -43,6 +43,7 @@ h2 {
   font-size: large;
   font-weight: bold;
   cursor: pointer;
+  text-align: center;
 }
 h2:hover:not(.activeSec) {
   background-color: rgba(106, 130, 154, 0.5);

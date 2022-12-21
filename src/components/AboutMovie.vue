@@ -107,4 +107,22 @@ h3 {
   width: fit-content;
   padding: 10px 6px;
 }
+
+@media screen and (max-width: 800px) {
+  #poster {
+    width: 30%;
+  }
+  #details {
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #poster {
+    width: 40%;
+  }
+  #details {
+    font-size: 0.4rem;
+  }
+}
 </style>
