@@ -2,10 +2,6 @@
   <router-view></router-view>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
 

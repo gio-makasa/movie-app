@@ -1,42 +1,33 @@
 <template>
   <i class="fa-solid fa-bars" @click="showGenres"></i>
   <div id="genretabs">
-    <genre-tab
-      class="genretab"
-      v-for="i in genres"
-      :key="i.id"
-      :genre="i"
-    ></genre-tab>
+    <genre-tab class="genretab" v-for="i in genres" :key="i.id" :genre="i"
+      @selectedGenre="(e)=>{$emit('selectedGenre', e)}"></genre-tab>
   </div>
 </template>
 
-<script>
+<script setup>
+import { onBeforeMount, ref } from "vue";
 import GenreTab from "./GenreTab.vue";
 
-export default {
-  components: { GenreTab },
-  data() {
-    return {
-      genres: [],
-    };
-  },
-  methods: {
-    showGenres() {
-      document.getElementById("genretabs").classList.toggle("active");
-    },
-  },
-  beforeMount() {
-    fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=04c35731a5ee918f014970082a0088b1"
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.genres = data.genres;
-      });
-  },
-};
+const emits = defineEmits(['selectedGenre'])
+const genres = ref([])
+
+function showGenres() {
+  document.getElementById("genretabs").classList.toggle("active");
+}
+
+onBeforeMount(() => {
+  fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=04c35731a5ee918f014970082a0088b1"
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      genres.value = data.genres;
+    });
+})
 </script>
 
 <style scoped>
@@ -48,6 +39,7 @@ export default {
   height: 100vh;
   color: white;
 }
+
 .fa-bars {
   display: none;
 }
@@ -59,9 +51,11 @@ export default {
     width: fit-content;
     z-index: 2;
   }
-  #genretabs[class~=active]{
+
+  #genretabs[class~=active] {
     display: block;
   }
+
   .fa-bars {
     display: block;
     font-size: xx-large;

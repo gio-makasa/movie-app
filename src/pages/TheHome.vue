@@ -1,35 +1,25 @@
 <template>
   <top-nav @section="sectFun"></top-nav>
-  <all-genres @genre="genreFun"></all-genres>
+  <all-genres @selectedGenre="genreFun"></all-genres>
   <the-main :sect="chosenSection" :genre="chosenGenre"></the-main>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
+
 import TopNav from "../components/TopNav.vue";
 import AllGenres from "../components/AllGenres.vue";
 import TheMain from "../components/TheMain.vue";
 
-export default {
-  components: {
-    AllGenres,
-    TopNav,
-    TheMain,
-  },
-  data() {
-    return {
-      chosenSection: "now_playing",
-      chosenGenre: null,
-    };
-  },
-  methods: {
-    sectFun(n) {
-      this.chosenSection = n;
-    },
-    genreFun(n) {
-      this.chosenGenre = n;
-    },
-  },
-};
+const chosenSection = ref("now_playing");
+const chosenGenre = ref(null);
+
+function sectFun(n) {
+  chosenSection.value = n;
+}
+function genreFun(n) {
+  chosenGenre.value = n;
+}
 </script>
 
 <style scoped>

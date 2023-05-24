@@ -1,9 +1,6 @@
 <template>
   <header>
-    <h2
-      @click="$emit('section', 'now_playing'), activator($event)"
-      class="activeSec"
-    >
+    <h2 @click="$emit('section', 'now_playing'), activator($event)" class="activeSec">
       now playing
     </h2>
     <h2 @click="$emit('section', 'popular'), activator($event)">popular</h2>
@@ -11,16 +8,11 @@
   </header>
 </template>
 
-<script>
-export default {
-  emits: ["section"],
-  methods: {
-    activator(e) {
-      document.getElementsByClassName("activeSec")[0].classList.remove("activeSec");
-      e.target.classList.add("activeSec");
-    },
-  },
-};
+<script setup>
+function activator(e) {
+  document.getElementsByClassName("activeSec")[0].classList.remove("activeSec");
+  e.target.classList.add("activeSec");
+}
 </script>
 
 <style scoped>
@@ -34,6 +26,7 @@ header {
   color: white;
   padding: 1rem;
 }
+
 h2 {
   text-transform: uppercase;
   border-radius: 50px;
@@ -45,9 +38,11 @@ h2 {
   cursor: pointer;
   text-align: center;
 }
+
 h2:hover:not(.activeSec) {
   background-color: rgba(106, 130, 154, 0.5);
 }
+
 .activeSec {
   background-color: #6b839b;
 }
