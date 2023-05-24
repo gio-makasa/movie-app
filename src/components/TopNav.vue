@@ -25,6 +25,7 @@ header {
   height: fit-content;
   color: white;
   padding: 1rem;
+  align-items: center;
 }
 
 h2 {
@@ -32,7 +33,6 @@ h2 {
   border-radius: 50px;
   padding: 1% 3%;
   color: white;
-  text-decoration: none;
   font-size: large;
   font-weight: bold;
   cursor: pointer;

@@ -1,8 +1,7 @@
 <template>
   <i class="fa-solid fa-bars" @click="showGenres"></i>
-  <div id="genretabs">
-    <genre-tab class="genretab" v-for="i in genres" :key="i.id" :genre="i"
-      @selectedGenre="(e)=>{$emit('selectedGenre', e)}"></genre-tab>
+  <div id="genretabs" ref="genretabs">
+    <genre-tab class="genretab" v-for="i in genres" :key="i.id" :genre="i" @selectedGenre="getSelectedGenre"></genre-tab>
   </div>
 </template>
 
@@ -12,9 +11,15 @@ import GenreTab from "./GenreTab.vue";
 
 const emits = defineEmits(['selectedGenre'])
 const genres = ref([])
+const genretabs = ref(null);
 
 function showGenres() {
-  document.getElementById("genretabs").classList.toggle("active");
+  genretabs.classList.toggle("active");
+}
+
+function getSelectedGenre(e) {
+  emits('selectedGenre', e);
+  showGenres();
 }
 
 onBeforeMount(() => {
@@ -48,12 +53,14 @@ onBeforeMount(() => {
   #genretabs {
     display: none;
     background-color: rgba(0, 0, 0, 0.6);
-    width: fit-content;
+    width: 45%;
     z-index: 2;
   }
 
   #genretabs[class~=active] {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
   .fa-bars {

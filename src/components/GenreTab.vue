@@ -5,6 +5,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const props = defineProps(['genre']);
 const emit = defineEmits(['selectedGenre']);
 
