@@ -14,7 +14,7 @@ const genres = ref([])
 const genretabs = ref(null);
 
 function showGenres() {
-  genretabs.classList.toggle("active");
+  genretabs.value.classList.toggle("active");
 }
 
 function getSelectedGenre(e) {
